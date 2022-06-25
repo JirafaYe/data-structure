@@ -21,21 +21,22 @@ public class SqlList {
 
     public SqlList() {
         this.maxSize=100;
+        this.length=0;
         this.data=new Polinomial[maxSize];
     }
 
-    public SqlList(int length) {
-        this.length = length;
-        this.maxSize=100;
+    public SqlList(int size) {
+        this.length = 0;
+        this.maxSize=size;
         this.data=new Polinomial[maxSize];
     }
 
     public void clear(){
-        this.length=0;
+        length=0;
     }
 
     public int length(){
-        return this.length;
+        return length;
     }
 
     public Boolean isEmpty(){
@@ -69,7 +70,7 @@ public class SqlList {
             data[i]=data[i-1];
         }
         data[index]=elem;
-        this.length++;
+        length++;
     }
 
     /**
