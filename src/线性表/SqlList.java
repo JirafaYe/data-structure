@@ -1,11 +1,10 @@
 package 线性表;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
-
-public class SqlList {
+/**
+ * 线性表的顺序表示
+ * @author jirafa
+ */
+public class SqlList<T> {
     /**
      * 线性表长度
      */
@@ -13,7 +12,7 @@ public class SqlList {
     /**
      * 数据域
      */
-    private Polinomial[] data;
+    private Object[] data;
     /**
      * 最大容量
      */
@@ -22,13 +21,13 @@ public class SqlList {
     public SqlList() {
         this.maxSize=100;
         this.length=0;
-        this.data=new Polinomial[maxSize];
+        this.data= new Object[maxSize];
     }
 
     public SqlList(int size) {
         this.length = 0;
         this.maxSize=size;
-        this.data=new Polinomial[maxSize];
+        this.data= new Object[maxSize];
     }
 
     public void clear(){
@@ -43,14 +42,14 @@ public class SqlList {
         return length == 0;
     }
 
-    public Polinomial get(int index){
+    public T get(int index){
         if(index>=length||index<0){
             throw new RuntimeException("该索引不存在");
         }
-        return data[index];
+        return (T) data[index];
     }
 
-    public int indexOf(Polinomial elem){
+    public int indexOf(T elem){
         for (int i = 0; i < length; i++) {
             if(data[i].equals(elem))
                 return i;
@@ -58,7 +57,7 @@ public class SqlList {
         return -1;
     }
 
-    public void insert(int index,Polinomial elem){
+    public void insert(int index, T elem){
         if(length==maxSize){
             throw new RuntimeException("顺序表已满");
         }
@@ -77,11 +76,11 @@ public class SqlList {
      * 默认从尾部插入
      * @param elem 多项式类型
      */
-    public void insert(Polinomial elem){
+    public void insert(T elem){
         if(length==maxSize){
             throw new RuntimeException("线性表已满");
         }
-        data[length]=elem;
+        data[length]= elem;
         length++;
     }
 

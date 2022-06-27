@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class test {
     public static void main(String[] args) {
-        SqlList sqlList = new SqlList();
+        SqlList<Polinomial> sqlList = new SqlList<>();
         System.out.println(sqlList.isEmpty());
         for (int i = 0; i < 10; i++){
             Random random = new Random();
@@ -13,8 +13,9 @@ public class test {
             sqlList.insert(polinomial);
         }
         sqlList.remove(5);
+        System.out.println(sqlList.length());
         Polinomial polinomial = new Polinomial(0, 0);
-        sqlList.insert(5,polinomial);
+        sqlList.insert(sqlList.length(),polinomial);
         System.out.println(sqlList.get(0));
         System.out.println(sqlList.indexOf(polinomial));
         System.out.println(sqlList.length());
