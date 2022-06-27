@@ -1,5 +1,7 @@
 package 线性表;
 
+import java.util.Objects;
+
 /**
  * @author jj
  * 多项式实体类
@@ -44,5 +46,18 @@ public class Polinomial {
                 "e=" + e +
                 ", p=" + p +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Polinomial that = (Polinomial) o;
+        return e == that.e && Float.compare(that.p, p) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(e, p);
     }
 }
