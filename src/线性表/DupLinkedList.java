@@ -1,17 +1,18 @@
 package 线性表;
 
+import 线性表.Node.DupNode;
 import 线性表.Node.Node;
 
 /**
  * 循环链表
  * @author jirafa
  */
-public class LinkedList<T> {
+public class DupLinkedList<T> {
     private int size;
-    private Node<T> first;
-    private Node<T> last;
+    private DupNode<T> first;
+    private DupNode<T> last;
 
-    public LinkedList() {
+    public DupLinkedList() {
         this.size=0;
         this.first =null;
         this.last =null;
@@ -21,7 +22,7 @@ public class LinkedList<T> {
      * 头插法插入节点
      */
     public void  addFirst(T t){
-        Node<T> node = new Node<T>(t);
+        DupNode<T> node = new DupNode<>(t);
         if(size==0){
             first=last=node;
         }else {
@@ -155,7 +156,7 @@ public class LinkedList<T> {
      * @param list
      * @return void
      */
-    public void connect(LinkedList<T> list){
+    public void connect(DupLinkedList<T> list){
         this.last.next=list.first;
         list.last.next=this.first;
         this.last=list.last;

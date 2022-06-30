@@ -1,5 +1,7 @@
 package 线性表;
 
+import 线性表.Entity.Polinomial;
+
 import java.util.Random;
 
 public class test {

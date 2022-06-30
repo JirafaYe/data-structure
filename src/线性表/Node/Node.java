@@ -1,12 +1,12 @@
-package 线性表;
+package 线性表.Node;
 
 /**
  * 链表节点
  * @author jirafa
  */
 public class Node<T> {
-    T t;
-    Node<T> next;
+    public T t;
+    public Node<T> next;
 
     public Node(T t, Node<T> next) {
         this.t = t;

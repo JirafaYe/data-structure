@@ -1,5 +1,7 @@
 package 线性表;
 
+import 线性表.Node.Node;
+
 /**
  * 单链表
  * @author jirafa

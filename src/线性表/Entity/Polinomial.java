@@ -1,4 +1,4 @@
-package 线性表;
+package 线性表.Entity;
 
 import java.util.Objects;
 
