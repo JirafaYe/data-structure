@@ -5,24 +5,10 @@ import java.util.Random;
 
 public class test {
     public static void main(String[] args) {
-        LinkList<Polinomial> list = new LinkList<>();
-        Polinomial polinomial = new Polinomial(0,0);
-        list.addFirst(polinomial);
-        for (int i = 1; i <= 10; i++) {
-            Polinomial po = new Polinomial(i, i);
-            list.addFirst(po);
-            System.out.println(list.get(0));
-        }
-        list.addLast(new Polinomial(100,9));
-        list.remove(0);
-        Polinomial tem = new Polinomial(100, 9);
-        if(list.contains(tem))
-            list.remove(tem);
-        System.out.println(list);
 
     }
 
-    private void testSqlList(){
+    private static void testSqlList(){
         SqlList<Polinomial> sqlList = new SqlList<>();
         System.out.println(sqlList.isEmpty());
         for (int i = 0; i < 10; i++){
@@ -41,5 +27,23 @@ public class test {
         System.out.println(sqlList);
         sqlList.clear();
         System.out.println(sqlList);
+    }
+
+    private static void testLinkList(){
+        LinkList<Polinomial> list = new LinkList<>();
+        Polinomial polinomial = new Polinomial(0,0);
+        list.addFirst(polinomial);
+        for (int i = 1; i <= 10; i++) {
+            Polinomial po = new Polinomial(i, i);
+            list.addFirst(po);
+            System.out.println(list.get(0));
+        }
+        list.addLast(new Polinomial(100,9));
+        list.remove(0);
+        Polinomial tem = new Polinomial(100, 9);
+        if(list.contains(tem))
+            list.remove(tem);
+        list.addLast(new Polinomial(11,11));
+        System.out.println(list);
     }
 }
