@@ -1,10 +1,38 @@
 package 线性表;
 
-import java.util.LinkedList;
 import java.util.Random;
 
 public class test {
     public static void main(String[] args) {
+        LinkedList<Polinomial> list = new LinkedList<>();
+        LinkedList<Polinomial> list2 = new LinkedList<>();
+        Polinomial polinomial = new Polinomial(0,0);
+        list.addFirst(polinomial);
+        for (int i = 1; i <= 10; i++) {
+            Polinomial po = new Polinomial(i, i);
+            list.addFirst(po);
+            System.out.println(list.get(0));
+        }
+        for (int i = 1; i <= 10; i++) {
+            Polinomial po = new Polinomial(i, i);
+            list2.addFirst(po);
+            System.out.println(list2.get(0));
+        }
+        list.addLast(new Polinomial(100,9));
+        System.out.println(list);
+        System.out.println("l1Size:"+list.getSize());
+        list.remove(0);
+        Polinomial tem = new Polinomial(100, 9);
+        System.out.println("l1Size:"+list.getSize());
+        if(list.contains(tem))
+            list.remove(tem);
+        System.out.println("l1Size:"+list.getSize());
+        list.addLast(new Polinomial(11,11));
+        System.out.println("l1Size:"+list.getSize());
+        LinkedList<Polinomial> reList = list.connect(list2);
+        System.out.println("l1:"+list);
+        System.out.println("l2:"+list2);
+        System.out.println("re:"+reList);
 
     }
 

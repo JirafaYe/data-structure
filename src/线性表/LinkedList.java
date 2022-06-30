@@ -134,11 +134,11 @@ public class LinkedList<T> {
 
     public boolean contains(T t){
         Node<T> p=first;
-        do {
+        for (int i = 0; i < size; i++) {
             if(t.equals(p.t))
                 return true;
             p=p.next;
-        }while (p!=first);
+        }
         return false;
     }
 
@@ -147,20 +147,19 @@ public class LinkedList<T> {
     }
 
     /**
-     * 将两个循环链表合并
-     * @param list1
-     * @param list2
+     * 将传入循环链表list1与本循环链表合并
+     * @param list
      * @return LinkedList新的循环链表
      */
-    public LinkedList<T> connect(LinkedList<T> list1,LinkedList<T> list2){
+    public LinkedList<T> connect(LinkedList<T> list){
         LinkedList<T> reList = new LinkedList<>();
-        reList.first=list1.first;
-        reList.last=list1.last;
-        reList.last.next=list2.first;
-        reList.last=list2.last;
-        reList.last.next= reList.first;;
+        reList.first=this.first;
+        reList.last=this.last;
+        reList.last.next=list.first;
+        reList.last=list.last;
+        reList.last.next= reList.first;
 
-        reList.size=list1.size+ list2.size;
+        reList.size=this.size+ list.size;
 
         return reList;
     }
@@ -169,7 +168,7 @@ public class LinkedList<T> {
     public String toString() {
         StringBuilder list = new StringBuilder();
         Node<T> p=first;
-        while (p!=null){
+        for (int i = 0; i < size; i++) {
             list.append(p.t);
             p=p.next;
         }
