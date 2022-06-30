@@ -24,13 +24,14 @@ public class test {
         if(list.contains(tem))
             list.remove(tem);
         System.out.println("l1Size:"+list.getSize());
-        System.out.println(list.contains(tem));
-        System.out.println(list.contains(polinomial));
         list.addLast(new Polinomial(11,11));
-        LinkedList<Polinomial> reList = list.connect(list2);
         System.out.println("l1:"+list);
         System.out.println("l2:"+list2);
-        System.out.println("re:"+reList);
+        list2.addLast(new Polinomial(0,50));
+        list.connect(list2);
+        System.out.println(list);
+        list.remove(new Polinomial(0,50));
+        System.out.println("aft:"+list);
 
     }
 

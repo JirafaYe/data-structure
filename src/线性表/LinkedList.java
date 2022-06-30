@@ -97,13 +97,14 @@ public class LinkedList<T> {
             removeFirst();
         }else {
             Node<T> pre = first;
-            while (pre.next != first) {
+            int i;
+            for (i = 0; i < size; i++) {
                 if ((pre.next).t.equals(t)) {
                     break;
                 }
                 pre = pre.next;
             }
-            if (pre.next == first) {
+            if (i == size) {
                 throw new RuntimeException("未找到该元素");
             } else {
                 Node<T> aft=pre.next;
@@ -150,22 +151,14 @@ public class LinkedList<T> {
     /**
      * 将传入循环链表list1与本循环链表合并
      * @param list
-     * @return LinkedList新的循环链表
+     * @return void
      */
-    public LinkedList<T> connect(LinkedList<T> list){
-        LinkedList<T> reList = new LinkedList<>();
-        reList.first=this.first;
+    public void connect(LinkedList<T> list){
+        this.last.next=list.first;
+        list.last.next=this.first;
+        this.last=list.last;
 
-        Node<T> node = new Node<>(this.last.t);
-        node.next=list.first;
-        reList.last=node;
-
-        reList.last=list.last;
-        reList.last.next= reList.first;
-
-        reList.size=this.size+ list.size;
-
-        return reList;
+        this.size+= list.size;
     }
 
     @Override
@@ -176,7 +169,7 @@ public class LinkedList<T> {
             list.append(p.t);
             p=p.next;
         }
-        return "LinkList{" +
+        return "LinkedList{" +
                list+ '}';
     }
 }
