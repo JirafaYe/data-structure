@@ -19,16 +19,14 @@ public class test {
             System.out.println(list2.get(0));
         }
         list.addLast(new Polinomial(100,9));
-        System.out.println(list);
-        System.out.println("l1Size:"+list.getSize());
         list.remove(0);
         Polinomial tem = new Polinomial(100, 9);
-        System.out.println("l1Size:"+list.getSize());
         if(list.contains(tem))
             list.remove(tem);
         System.out.println("l1Size:"+list.getSize());
+        System.out.println(list.contains(tem));
+        System.out.println(list.contains(polinomial));
         list.addLast(new Polinomial(11,11));
-        System.out.println("l1Size:"+list.getSize());
         LinkedList<Polinomial> reList = list.connect(list2);
         System.out.println("l1:"+list);
         System.out.println("l2:"+list2);

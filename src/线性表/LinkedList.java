@@ -89,6 +89,7 @@ public class LinkedList<T> {
     public void removeFirst(){
         first=first.next;
         last.next=first;
+        size--;
     }
 
     public void remove(T t){
@@ -154,8 +155,11 @@ public class LinkedList<T> {
     public LinkedList<T> connect(LinkedList<T> list){
         LinkedList<T> reList = new LinkedList<>();
         reList.first=this.first;
-        reList.last=this.last;
-        reList.last.next=list.first;
+
+        Node<T> node = new Node<>(this.last.t);
+        node.next=list.first;
+        reList.last=node;
+
         reList.last=list.last;
         reList.last.next= reList.first;
 
