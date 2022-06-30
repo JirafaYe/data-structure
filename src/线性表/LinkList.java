@@ -87,6 +87,7 @@ public class LinkList<T> {
 
     public void removeFirst(){
         first=first.next;
+        size--;
     }
 
     public void remove(T t){
