@@ -9,6 +9,39 @@ public class test {
 
     }
 
+    private static void testDupLinkedList(){
+        DupLinkedList<Polinomial> list = new DupLinkedList<>();
+        DupLinkedList<Polinomial> list2 = new DupLinkedList<>();
+        Polinomial polinomial = new Polinomial(0,0);
+        list.addFirst(polinomial);
+        for (int i = 1; i <= 10; i++) {
+            Polinomial po = new Polinomial(i, i);
+            list.addFirst(po);
+            System.out.println(list.get(0));
+        }
+        for (int i = 1; i <= 10; i++) {
+            Polinomial po = new Polinomial(i, i);
+            list2.addFirst(po);
+            System.out.println(list2.get(0));
+        }
+        list.addLast(new Polinomial(100,9));
+        list.remove(0);
+//        Polinomial tem = new Polinomial(100, 9);
+//        if(list.contains(tem))
+//            list.remove(tem);
+        list.removeLast();
+        System.out.println("l1Size:"+list.getSize());
+        System.out.println("l1:"+list);
+        System.out.println("l2:"+list2);
+        list2.addLast(new Polinomial(0,50));
+        list.connect(list2);
+        System.out.println(list);
+//        list.removeLast();
+        System.out.println("pre:"+list);
+        list.remove(list.getSize()-1);
+        System.out.println("aft:"+list);
+    }
+
     private static void testLinkedList(){
         LinkedList<Polinomial> list = new LinkedList<>();
         LinkedList<Polinomial> list2 = new LinkedList<>();

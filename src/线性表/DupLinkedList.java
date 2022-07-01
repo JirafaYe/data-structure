@@ -103,7 +103,7 @@ public class DupLinkedList<T> {
             }
         }else {
             cur=last;
-            for (int i = size-1; i >= index; i--) {
+            for (int i = size-1; i > index; i--) {
                 cur=cur.prior;
             }
         }
@@ -192,6 +192,7 @@ public class DupLinkedList<T> {
         list.first.prior=list.last;
         list.last.next=this.first;
         this.first.prior=list.last;
+        this.last= list.last;
 
         this.size+= list.size;
     }
