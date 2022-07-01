@@ -4,7 +4,7 @@ import 线性表.Node.DupNode;
 import 线性表.Node.Node;
 
 /**
- * 循环链表
+ * 双向循环链表
  * @author jirafa
  */
 public class DupLinkedList<T> {
@@ -27,6 +27,8 @@ public class DupLinkedList<T> {
             first=last=node;
         }else {
             node.next=first;
+            node.prior=last;
+            first.prior=node;
             first=node;
             last.next=first;
         }
@@ -38,20 +40,21 @@ public class DupLinkedList<T> {
      * @param t
      */
     public void addLast(T t){
-        Node<T> node = new Node<>(t);
+        DupNode<T> node = new DupNode<>(t);
         if(size==0){
             first=node;
             last=node;
         }else {
             last.next=node;
+            node.prior=last;
+            node.next=first;
             last=node;
-            last.next=first;
         }
         size++;
     }
 
     public void add(T t,int index){
-        Node<T> node = new Node<>(t);
+        DupNode<T> node = new DupNode<>(t);
         if(index>=size||index<0){
             throw new RuntimeException("下标错误");
         }
@@ -63,12 +66,24 @@ public class DupLinkedList<T> {
             addLast(t);
             return;
         }
-        Node<T> pre=first;
-        for (int i = 0; i < index - 1; i++) {
-            pre=pre.next;
+        if(index<size/2){
+            DupNode<T> pre = first;
+            for (int i = 0; i < index-1; i++) {
+                pre=pre.next;
+            }
+            node.next=pre.next;
+            node.prior=pre;
+            node.next.prior=node;
+        }else {
+            DupNode<T> aft=last;
+            for (int i = size-1; i > index; i--) {
+                aft=aft.prior;
+            }
+            aft.prior.next=node;
+            node.prior=aft.prior;
+            node.next=aft;
+            aft.prior=node;
         }
-        node.next=pre.next;
-        pre.next=node;
         size++;
     }
 
@@ -80,18 +95,34 @@ public class DupLinkedList<T> {
             removeFirst();
             return;
         }
-        Node<T> pre=first;
-        for (int i = 0; i < index - 1; i++) {
-            pre=pre.next;
+        DupNode<T> cur;
+        if(index<size/2){
+            cur=first;
+            for (int i = 0; i < index ; i++) {
+                cur=cur.next;
+            }
+        }else {
+            cur=last;
+            for (int i = size-1; i >= index; i--) {
+                cur=cur.prior;
+            }
         }
-        Node<T> aft=pre.next;
-        pre.next=aft.next;
+        cur.next.prior=cur.prior;
+        cur.prior.next=cur.next;
         size--;
     }
 
     public void removeFirst(){
         first=first.next;
+        first.prior=last;
         last.next=first;
+        size--;
+    }
+
+    public void removeLast(){
+        last=last.prior;
+        last.next=first;
+        first.prior=last;
         size--;
     }
 
@@ -99,25 +130,25 @@ public class DupLinkedList<T> {
         if(t.equals(first.t)){
             removeFirst();
         }else {
-            Node<T> pre = first;
+            DupNode<T> cur = first;
             int i;
             for (i = 0; i < size; i++) {
-                if ((pre.next).t.equals(t)) {
+                if (cur.t.equals(t)) {
                     break;
                 }
-                pre = pre.next;
+                cur = cur.next;
             }
             if (i == size) {
                 throw new RuntimeException("未找到该元素");
             } else {
-                Node<T> aft=pre.next;
-                if(aft.equals(last)){
-                    last=pre;
-                    last.next=first;
+                if(cur.equals(last)){
+                    removeLast();
+                    return;
                 }
-                pre.next=aft.next;
+                cur.prior.next=cur.next;
+                cur.next.prior= cur.prior;
+                size--;
             }
-            size--;
         }
     }
 
@@ -130,7 +161,7 @@ public class DupLinkedList<T> {
         if(index>=size){
             throw new RuntimeException("下标越界");
         }
-        Node<T> reNode=first;
+        DupNode<T> reNode=first;
         for (int i = 0; i < index; i++) {
             reNode=reNode.next;
         }
@@ -138,7 +169,7 @@ public class DupLinkedList<T> {
     }
 
     public boolean contains(T t){
-        Node<T> p=first;
+        DupNode<T> p=first;
         for (int i = 0; i < size; i++) {
             if(t.equals(p.t))
                 return true;
@@ -158,8 +189,9 @@ public class DupLinkedList<T> {
      */
     public void connect(DupLinkedList<T> list){
         this.last.next=list.first;
+        list.first.prior=list.last;
         list.last.next=this.first;
-        this.last=list.last;
+        this.first.prior=list.last;
 
         this.size+= list.size;
     }
@@ -167,7 +199,7 @@ public class DupLinkedList<T> {
     @Override
     public String toString() {
         StringBuilder list = new StringBuilder();
-        Node<T> p=first;
+        DupNode<T> p=first;
         for (int i = 0; i < size; i++) {
             list.append(p.t);
             p=p.next;
