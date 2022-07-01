@@ -183,7 +183,7 @@ public class DupLinkedList<T> {
     }
 
     /**
-     * 将传入循环链表list1与本循环链表合并
+     * 将传入循环链表list与本循环链表合并
      * @param list
      * @return void
      */

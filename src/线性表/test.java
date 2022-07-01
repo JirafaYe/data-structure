@@ -6,6 +6,10 @@ import java.util.Random;
 
 public class test {
     public static void main(String[] args) {
+
+    }
+
+    private static void testLinkedList(){
         LinkedList<Polinomial> list = new LinkedList<>();
         LinkedList<Polinomial> list2 = new LinkedList<>();
         Polinomial polinomial = new Polinomial(0,0);
@@ -34,7 +38,6 @@ public class test {
         System.out.println(list);
         list.remove(new Polinomial(0,50));
         System.out.println("aft:"+list);
-
     }
 
     private static void testSqlList(){
