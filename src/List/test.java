@@ -1,6 +1,6 @@
-package 线性表;
+package List;
 
-import 线性表.Entity.Polinomial;
+import List.Entity.Polinomial;
 
 import java.util.Random;
 

@@ -1,7 +1,6 @@
-package 线性表;
+package List;
 
-import 线性表.Node.DupNode;
-import 线性表.Node.Node;
+import List.Node.DupNode;
 
 /**
  * 双向循环链表

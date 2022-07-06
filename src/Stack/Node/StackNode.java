@@ -1,4 +1,4 @@
-package 栈;
+package Stack.Node;
 
 public class StackNode<T> {
     private T t;

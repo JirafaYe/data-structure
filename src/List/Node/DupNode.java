@@ -1,4 +1,4 @@
-package 线性表.Node;
+package List.Node;
 
 import java.util.Objects;
 

@@ -1,6 +1,4 @@
-package 栈;
-
-import java.util.Arrays;
+package Stack;
 
 public class SqStack<T> {
     private Object[] elem;

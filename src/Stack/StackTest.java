@@ -1,6 +1,6 @@
-package 栈;
+package Stack;
 
-import 线性表.Entity.Polinomial;
+import List.Entity.Polinomial;
 
 public class StackTest {
     public static void main(String[] args) throws Exception {

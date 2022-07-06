@@ -1,4 +1,4 @@
-package 线性表;
+package List;
 
 /**
  * 线性表的顺序表示

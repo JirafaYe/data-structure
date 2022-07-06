@@ -1,17 +1,17 @@
-package 线性表;
+package List;
 
-import 线性表.Node.Node;
+import List.Node.Node;
 
 /**
- * 单链表
+ * 循环链表
  * @author jirafa
  */
-public class LinkList<T> {
+public class LinkedList<T> {
     private int size;
     private Node<T> first;
     private Node<T> last;
 
-    public LinkList() {
+    public LinkedList() {
         this.size=0;
         this.first =null;
         this.last =null;
@@ -23,11 +23,11 @@ public class LinkList<T> {
     public void  addFirst(T t){
         Node<T> node = new Node<T>(t);
         if(size==0){
-            first=node;
-            last=node;
+            first=last=node;
         }else {
             node.next=first;
             first=node;
+            last.next=first;
         }
         size++;
     }
@@ -44,6 +44,7 @@ public class LinkList<T> {
         }else {
             last.next=node;
             last=node;
+            last.next=first;
         }
         size++;
     }
@@ -89,6 +90,7 @@ public class LinkList<T> {
 
     public void removeFirst(){
         first=first.next;
+        last.next=first;
         size--;
     }
 
@@ -97,18 +99,20 @@ public class LinkList<T> {
             removeFirst();
         }else {
             Node<T> pre = first;
-            while (pre.next != null) {
+            int i;
+            for (i = 0; i < size; i++) {
                 if ((pre.next).t.equals(t)) {
                     break;
                 }
                 pre = pre.next;
             }
-            if (pre.next == null) {
+            if (i == size) {
                 throw new RuntimeException("未找到该元素");
             } else {
                 Node<T> aft=pre.next;
                 if(aft.equals(last)){
                     last=pre;
+                    last.next=first;
                 }
                 pre.next=aft.next;
             }
@@ -134,7 +138,7 @@ public class LinkList<T> {
 
     public boolean contains(T t){
         Node<T> p=first;
-        while (p!=null){
+        for (int i = 0; i < size; i++) {
             if(t.equals(p.t))
                 return true;
             p=p.next;
@@ -142,15 +146,32 @@ public class LinkList<T> {
         return false;
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     * 将传入循环链表list1与本循环链表合并
+     * @param list
+     * @return void
+     */
+    public void connect(LinkedList<T> list){
+        this.last.next=list.first;
+        list.last.next=this.first;
+        this.last=list.last;
+
+        this.size+= list.size;
+    }
+
     @Override
     public String toString() {
         StringBuilder list = new StringBuilder();
         Node<T> p=first;
-        while (p!=null){
+        for (int i = 0; i < size; i++) {
             list.append(p.t);
             p=p.next;
         }
-        return "LinkList{" +
+        return "LinkedList{" +
                list+ '}';
     }
 }
