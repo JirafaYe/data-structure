@@ -1,10 +1,12 @@
 package Stack.Node;
 
 public class StackNode<T> {
-    private T t;
-    private StackNode<T> next;
+    public T t;
+    public StackNode<T> next;
 
     public StackNode() {
+        this.t=null;
+        this.next=null;
     }
 
     public StackNode(T t) {
