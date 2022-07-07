@@ -64,6 +64,7 @@ public class LinkedQueue<T> {
         while (node.next!=null)
         {
             builder.append(node.t).append(",");
+            node=node.next;
         }
         builder.append(node.t);
         return "LinkedQueue{" +

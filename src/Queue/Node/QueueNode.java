@@ -6,6 +6,7 @@ public class QueueNode<T> {
 
     public QueueNode(T t) {
         this.t = t;
+        this.next=null;
     }
 
     public QueueNode(QueueNode<T> next, T t) {
